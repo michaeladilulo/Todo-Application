@@ -1,10 +1,21 @@
 ﻿using System;
-namespace TodoApplication.Services
+using TodoApplication.Models;
+using TodoApplication.Repositories;
+
+namespace TodoApplication.Controllers
 {
 	public class TodosService
 	{
-		public TodosService()
+		private readonly TodosRepository _repo;
+
+		public TodosService(TodosRepository repo)
 		{
+			_repo = repo;
+		}
+
+		internal IEnumerable<Todo> GetAllTodos()
+		{
+			return _repo.GetAllTodos();
 		}
 	}
 }
