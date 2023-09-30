@@ -18,7 +18,6 @@ namespace TodoApplication.Controllers
 		}
 
 		[HttpGet]
-
 		public ActionResult<IEnumerable<Todo>> GetAllTodos()
 		{
 			try

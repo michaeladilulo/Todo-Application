@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Data;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Serialization;
+using TodoApplication.Controllers;
+using TodoApplication.Repositories;
 
 namespace TodoApplication
 {
@@ -11,8 +15,6 @@ namespace TodoApplication
 		}
 
 		public IConfiguration Configuration { get; }
-
-
 
 		public void ConfigureServices(IServiceCollection services)
 		{
@@ -27,10 +29,18 @@ namespace TodoApplication
 				.AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
 			services.AddControllers();
+			services.AddScoped<IDbConnection>(x => CreateDbConnection());
+			services.AddTransient<TodosService>();
+			services.AddTransient<TodosRepository>();
 
 			services.AddEndpointsApiExplorer();
 			services.AddSwaggerGen();
+		}
 
+		private IDbConnection CreateDbConnection()
+		{
+			string connectionString = Configuration["db:gearhost"];
+			return new MySqlConnection(connectionString);
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
