@@ -13,9 +13,9 @@ namespace TodoApplication.Models
 		[Required]
 		public string TodoDescription { get; set; }
 
-		public DateOnly TodoCreatedOn { get; set; }
+		public DateTime TodoCreatedOn { get; set; }
 
-		public DateOnly TodoUpdatedOn { get; set; }
+		public DateTime TodoUpdatedOn { get; set; }
 	}
 }
 
