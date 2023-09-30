@@ -56,6 +56,22 @@ namespace TodoApplication.Controllers
 				return BadRequest(error.Message);
 			}
 		}
+
+		[HttpPut("{TodoId}")]
+
+		public ActionResult<Todo> EditTodo(int TodoId, Todo todoToUpdate)
+		{
+			todoToUpdate.TodoId = TodoId;
+
+			try
+			{
+				return Ok(_ts.EditTodo(todoToUpdate, TodoId));
+			}
+			catch (System.Exception error)
+			{
+				return BadRequest(error.Message);
+			}
+		}
 	}
 }
 

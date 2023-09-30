@@ -32,6 +32,15 @@ namespace TodoApplication.Repositories
 			newTodo.TodoId = _db.ExecuteScalar<int>(sql, newTodo);
 			return newTodo;
 		}
+
+		internal Todo EditTodo(Todo todoToUpdate, int TodoId)
+		{
+			todoToUpdate.TodoId = TodoId;
+
+			string sql = "UPDATE todos SET TodoTitle = @TodoTitle, TodoDescription = @TodoDescription WHERE TodoId = @TodoId";
+			todoToUpdate.TodoId = _db.Execute(sql, todoToUpdate);
+			return todoToUpdate;
+		}
 	}
 }
 

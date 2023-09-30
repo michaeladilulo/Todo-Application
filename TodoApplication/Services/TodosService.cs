@@ -28,6 +28,15 @@ namespace TodoApplication.Controllers
 		{
 			return _repo.CreateTodo(newTodo);
 		}
+
+		internal Todo EditTodo(Todo todoToUpdate, int TodoId)
+		{
+			Todo foundTodo = GetById(todoToUpdate.TodoId);
+
+			_repo.EditTodo(todoToUpdate, TodoId);
+
+			return todoToUpdate;
+		}
 	}
 }
 
