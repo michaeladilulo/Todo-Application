@@ -37,6 +37,15 @@ namespace TodoApplication.Controllers
 
 			return todoToUpdate;
 		}
+
+		internal string DeleteTodo(int TodoId)
+		{
+			Todo foundTodo = GetById(TodoId);
+
+			_repo.DeleteTodo(foundTodo.TodoId);
+
+			return "Successfully Deleted Todo";
+		}
 	}
 }
 

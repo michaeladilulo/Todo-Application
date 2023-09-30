@@ -72,6 +72,20 @@ namespace TodoApplication.Controllers
 				return BadRequest(error.Message);
 			}
 		}
+
+		[HttpDelete("{TodoId}")]
+
+		public ActionResult<Todo> DeleteTodo(int TodoId)
+		{
+			try
+			{
+				return Ok(_ts.DeleteTodo(TodoId));
+			}
+			catch (System.Exception error)
+			{
+				return BadRequest(error.Message);
+			}
+		}
 	}
 }
 

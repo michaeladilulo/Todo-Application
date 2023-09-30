@@ -41,6 +41,14 @@ namespace TodoApplication.Repositories
 			todoToUpdate.TodoId = _db.Execute(sql, todoToUpdate);
 			return todoToUpdate;
 		}
+
+		internal string DeleteTodo(int TodoId)
+		{
+			string sql = "DELETE FROM todos WHERE TodoId = @TodoId LIMIT 1";
+			_db.Execute(sql, new { TodoId });
+			return "Successfully Deleted Todo";
+
+		}
 	}
 }
 
