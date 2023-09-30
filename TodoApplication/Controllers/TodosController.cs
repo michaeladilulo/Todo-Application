@@ -20,13 +20,27 @@ namespace TodoApplication.Controllers
 		[HttpGet]
 		public ActionResult<IEnumerable<Todo>> GetAllTodos()
 		{
-			try
+			try // THIS CAN BE CLEANED UP AND REFACTORED
 			{
 				return Ok(_ts.GetAllTodos());
 			}
 			catch
 			{
 				throw;
+			}
+		}
+
+		[HttpGet("{TodoId}")]
+
+		public ActionResult<Todo> GetById(int TodoId)
+		{
+			try
+			{
+				return Ok(_ts.GetById(TodoId));
+			}
+			catch (System.Exception error)
+			{
+				return BadRequest(error.Message);
 			}
 		}
 	}

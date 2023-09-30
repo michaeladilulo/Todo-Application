@@ -19,6 +19,12 @@ namespace TodoApplication.Repositories
 			string sql = "SELECT * FROM todos";
 			return _db.Query<Todo>(sql);
 		}
+
+		internal Todo GetById(int TodoId)
+		{
+			string sql = "SELECT * FROM todos WHERE TodoId = @TodoId";
+			return _db.QueryFirstOrDefault<Todo>(sql, new { TodoId });
+		}
 	}
 }
 

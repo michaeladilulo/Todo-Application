@@ -17,6 +17,12 @@ namespace TodoApplication.Controllers
 		{
 			return _repo.GetAllTodos();
 		}
+
+		public Todo GetById(int TodoId)
+		{
+			Todo foundTodo = _repo.GetById(TodoId) ?? throw new Exception("Invalid Id");
+            return foundTodo;
+		}
 	}
 }
 
