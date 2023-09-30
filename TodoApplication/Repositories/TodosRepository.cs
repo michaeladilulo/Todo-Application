@@ -25,6 +25,13 @@ namespace TodoApplication.Repositories
 			string sql = "SELECT * FROM todos WHERE TodoId = @TodoId";
 			return _db.QueryFirstOrDefault<Todo>(sql, new { TodoId });
 		}
+
+		internal Todo CreateTodo(Todo newTodo)
+		{
+			string sql = "INSERT INTO todos (TodoTitle, TodoDescription) VALUES (@TodoTitle, @TodoDescription); SELECT LAST_INSERT_ID()";
+			newTodo.TodoId = _db.ExecuteScalar<int>(sql, newTodo);
+			return newTodo;
+		}
 	}
 }
 

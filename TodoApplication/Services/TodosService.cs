@@ -23,6 +23,11 @@ namespace TodoApplication.Controllers
 			Todo foundTodo = _repo.GetById(TodoId) ?? throw new Exception("Invalid Id");
             return foundTodo;
 		}
+
+		internal Todo CreateTodo(Todo newTodo)
+		{
+			return _repo.CreateTodo(newTodo);
+		}
 	}
 }
 

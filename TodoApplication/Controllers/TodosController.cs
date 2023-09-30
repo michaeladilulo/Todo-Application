@@ -43,6 +43,19 @@ namespace TodoApplication.Controllers
 				return BadRequest(error.Message);
 			}
 		}
+
+		[HttpPost]
+		public ActionResult<Todo> CreateTodo(Todo newTodo)
+		{
+			try
+			{
+				return Ok(_ts.CreateTodo(newTodo));
+			}
+			catch (System.Exception error)
+			{
+				return BadRequest(error.Message);
+			}
+		}
 	}
 }
 
